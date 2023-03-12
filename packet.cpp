@@ -7,10 +7,6 @@
 #include <unistd.h>
 #include <math.h>
 
-#define GRAPH 1
-#if GRAPH
-#endif
-
 #include "packet.h"
 
 #define YandUV_d 0
@@ -23,21 +19,18 @@
 #define AUDIOSAMPLE2 0 //aud  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #define AUDIOSAMPLE22 1 // THIS
 
-#define FRAME11252200 0
-#define FRAME7501980 0
-#define FRAME7501650 0
-#define IFRAME11252200 0
 #define FRAMEMANUAL 1
 		
 
 #define AUDIOSAMPLE3 0 // single channel
 #define ADUIOSAMPLE33 0// single channel 32
 
-#define AUDIOSAMPLE4 0 // channel by channel
+#define AUDIOSAMPLE4 1 // channel by channel
 
-#define AUDIODATA 0
-#define AUDIOCONTROL 0
-#define TIMECODEDATA 1
+#define AUDIODATA 1
+#define AUDIOCONTROL 1
+#define TIMECODEDATA 0
+
 
 #define FINAL1 0
 #define FINAL2 0
@@ -277,26 +270,6 @@ void AudioSampleFile4 (){
 	fclose (fp);
 	free(audioOut);
 }
-std::vector<double> createDomain (const double start, const double end, const double step);
-std::vector<double> sin_func(const std::vector<double> domain);
-
-
-std::vector<double> createDomain(const double start, const double end, const double step){
-	std::vector<double> domain;
-	for (double i=start; i<end; i+=step){
-		domain.push_back(i);
-	}
-	return domain;
-}
-
-std::vector<double> sin_func(const std::vector<double> domain){
-	std::vector <double> range;
-	for (int i=0; i<domain.size(); ++i){
-		range.push_back(domain[i]);
-	}
-	return range;
-}
-
 
 
 
@@ -777,8 +750,6 @@ bool GetAudioDataPacket(uint16_t* puv){
 			#endif
 				
 			#if AUDIOSAMPLE22
-					// FILE * fp3;
-					//fp3 = fopen ("sample22.wav", "ab");
 					audioIn_fifo.push (ADP.PCM.CH[i].aud);
 					int8_t tmp;
 					tmp = (ADP.PCM.CH[i].aud >> 16) & 0xFF;
@@ -789,9 +760,6 @@ bool GetAudioDataPacket(uint16_t* puv){
 
 					tmp = (ADP.PCM.CH[i].aud) & 0xFF;
 					audioIn_fifo8.push (tmp);
-					//fwrite(&ADP.PCM.CH[i].aud, 1, 3, fp2);
-					//fwrite(&ADP.PCM.CH[i].aud, 3, 1, fp3);
-					//fclose(fp3);
 			#endif
 			
 			#if AUDIOSAMPLE3
@@ -967,45 +935,16 @@ int main (int argc, char **argv){ //UYVYfile videoSize
 	YUV yuv;
 	long int frameNumber =1;
 	if (argc < 3){
-	#if FRAME7501980
-		sFile = fopen ("/root/work/YUVPacket/UYVY_leo/frame_750p50_1980.yuv", "rb");
-		yuv.width = HORIZONTAL_SAMPLES_HD720_50;
-		yuv.height = VERTICAL_LINES_HD720;
-	#endif
-
-	
-	#if FRAME7501650
-		sFile = fopen ("/root/work/YUVPacket/UYVY_leo/frame_750p60_1650.yuv", "rb");
-		yuv.width = HORIZONTAL_SAMPLES_HD720_50;
-		yuv.height = VERTICAL_LINES_HD720;
-	#endif
-		
-	#if FRAME11252200
-		sFile = fopen ("/root/work/YUVPacket/UYVY_leo/frame_1125p30_2200.yuv", "rb");
-		yuv.width = HORIZONTAL_SAMPLES_HD1080_60;
-		yuv.height = VERTICAL_LINES_HD1080;
-	#endif 
-
-	#if FRAME750591650
-		sFile = fopen ("/root/work/YUVPacket/UYVY_leo/frame_750p59o94_1650.yuv", "rb");
-		yuv.width = HORIZONTAL_SAMPLES_HD720_60;
-		yuv.height = VERTICAL_LINES_HD720;
-	#endif
-
-	#if IFRAME11252200
-		sFile = fopen ("/root/work/YUVPacket/UYVY_leo/frame_1125i30_2200.yuv", "rb");
-		yuv.width = HORIZONTAL_SAMPLES_HD1080_60;
-		yuv.height = VERTICAL_LINES_HD1080;
-	#endif
+		printf("Usage:%s input width\n", argv[0]);
 	#if FRAMEMANUAL
-		string fileName = "ST-104/lifeTime/ST2022_6_frame_858x525i@29.97.yuv";
-		sFile = fopen (("/zzz/Evertz/"+fileName).c_str(), "rb");
+		string fileName = header_fileName;
+		sFile = fopen (fileName.c_str(), "rb");
 		//sFile = fopen ("/root/work/YUVPacket/frame_1125p30_2200.yuv", "rb");
-		yuv.width = 858;
-		yuv.height = 525;
+		yuv.width = 2750;
+		yuv.height = 1125;
 	#endif
-	printf("Usage:%s input width\n", argv[0]);
-	printf((fileName+"\n").c_str());
+	
+
 	}
 	else {
 		path+=argv[1];
@@ -1067,8 +1006,6 @@ int main (int argc, char **argv){ //UYVYfile videoSize
 	frameNumber =60;
 	int ret = 0;
 	
-	remove("sample2.wav");
-	remove("sample22.wav");
 	remove("sampleFinal5.wav");
 	long int qsize = yuv.width * yuv.height  * 2; // 16bit devided by 8byte = 2;
 	yuv.Y = (uint8_t*) malloc (qsize);

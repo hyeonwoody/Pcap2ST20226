@@ -9,7 +9,7 @@ clean:
 packet.o: packet.cpp packet.h  
 	$(CC) -o $@ $(CFLAGS) -c $<
 packet: $(packet_OBJS)  
-	$(CC) pbPlots.cpp supportLib.cpp -o $@ $(packet_OBJS)
+	$(CC) -o $@ $(packet_OBJS)
 
 fwriteTest.o: fwriteTest.cpp
 	$(CC) -o $@ $(CFLAGS) -c $<
