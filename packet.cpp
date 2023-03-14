@@ -29,21 +29,12 @@
 
 #define AUDIODATA 1
 #define AUDIOCONTROL 1
-#define TIMECODEDATA 0
+#define TIMECODEDATA 1
 
-
-#define FINAL1 0
-#define FINAL2 0
-#define FINAL3 0 //24 bits => split by 8
-#define FINAL33 0 
 #define FINAL4 1
 
 #define FRAMES 1
 unsigned int frameIndex = 0;
-
-		
-
-
 
 audioControl GetAudioControl(uint16_t *p, size_t n)
 {
@@ -939,7 +930,6 @@ int main (int argc, char **argv){ //UYVYfile videoSize
 	#if FRAMEMANUAL
 		string fileName = header_fileName;
 		sFile = fopen (fileName.c_str(), "rb");
-		//sFile = fopen ("/root/work/YUVPacket/frame_1125p30_2200.yuv", "rb");
 		yuv.width = 2750;
 		yuv.height = 1125;
 	#endif
@@ -990,16 +980,8 @@ int main (int argc, char **argv){ //UYVYfile videoSize
 	uint8_t *frame = NULL;
 	
 	#if FRAMES
-    // fseek(sFile, 0, SEEK_END); 
-	// long int fileSize = 0;
-    // fileSize = ftell(sFile);
-
-	// frameNumber = fileSize / frameSize;
 
 	frame = (uint8_t*) malloc (frameSize);
-	//uint8_t* pFrame = frame;
-	// fseek(sFile,0,SEEK_SET);
-
 	#elif
 	frame = (uint8_t*) malloc (frameSize);
 	#endif
