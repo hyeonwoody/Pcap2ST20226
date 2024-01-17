@@ -17,7 +17,7 @@ Timecode는 각 프레임 마다 존재하므로 프레임의 개수만큼 나�
 </br>
 
 ## 🎥: Demonstration
-[http://3.37.53.164:51730/BubblePop](https://youtu.be/lxQEEoyy_Og)
+[시연 영상](https://youtu.be/lxQEEoyy_Og)
 
 </br>
 
