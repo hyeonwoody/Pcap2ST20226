@@ -14,24 +14,24 @@
 #define EMPTY 0
 
 
-#define AUDIOSAMPLE1 0 //PCM
+#define AUDIOSAMPLE1 1 //PCM
 
 #define AUDIOSAMPLE2 0 //aud  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#define AUDIOSAMPLE22 1 // THIS
+#define AUDIOSAMPLE22 0 // THIS
 
-#define FRAMEMANUAL 1
+#define FRAMEMANUAL 0
 		
 
 #define AUDIOSAMPLE3 0 // single channel
 #define ADUIOSAMPLE33 0// single channel 32
 
-#define AUDIOSAMPLE4 1 // channel by channel
+#define AUDIOSAMPLE4 0 // channel by channel
 
 #define AUDIODATA 1
-#define AUDIOCONTROL 1
-#define TIMECODEDATA 1
+#define AUDIOCONTROL 0
+#define TIMECODEDATA 0
 
-#define FINAL4 1
+#define FINAL4 0
 
 #define FRAMES 1
 unsigned int frameIndex = 0;
