@@ -34,3 +34,14 @@ Timecode는 각 프레임 마다 존재하므로 프레임의 개수만큼 나�
 >C++
 
 ## 📖: Libraries Used
+
+</br>
+
+## 📚: Referance
+>ST-12-1
+>ST-12-2
+>ST-12-3
+>https://learn.microsoft.com/ko-kr/windows/win32/medfound/about-yuv-video
+>https://learn.microsoft.com/ko-kr/windows/win32/medfound/recommended-8-bit-yuv-formats-for-video-rendering
+
+><br>
