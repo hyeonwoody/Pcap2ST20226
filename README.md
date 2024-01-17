@@ -43,5 +43,3 @@ Timecode는 각 프레임 마다 존재하므로 프레임의 개수만큼 나�
 >ST-12-3</br>
 >https://learn.microsoft.com/ko-kr/windows/win32/medfound/about-yuv-video
 >https://learn.microsoft.com/ko-kr/windows/win32/medfound/recommended-8-bit-yuv-formats-for-video-rendering
-
-><br>
