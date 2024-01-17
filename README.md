@@ -4,11 +4,9 @@ yuv파일(422, UYVY, 10bit)에서 AudioData, AudioControl & Timecode 정보를 �
 </br>
 
 ## 🧑‍💻: Intro
-yuv파일(422, UYVY, 10bit)에서 AudioData, AudioControl & Timecode 정보를 추출하는 CLI 기반 소스코드.
-AudioControl은 오디오의 볼륨, 채널 설정, 음소거 설정을 담고 있으며, '%' 입니다.
-AudioData는 인코딩 형식에 따라 다르며 PCM 오디오 정보이며, 태그는 '#' 입니다.
-Timecode는 각 프레임 마다 존재하므로 프레임의 개수만큼 나오고 태그는 '$' 입니다.
->
+AudioControl은 오디오의 볼륨, 채널 설정, 음소거 설정을 담고 있으며, '%' 입니다.</br>
+AudioData는 인코딩 형식에 따라 다르며 PCM 오디오 정보이며, 태그는 '#' 입니다.</br>
+Timecode는 각 프레임 마다 존재하므로 프레임의 개수만큼 나오고 태그는 '$' 입니다.</br>
 </br>
 
 ## ✅: Implementation 
