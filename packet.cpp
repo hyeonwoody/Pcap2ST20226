@@ -28,8 +28,8 @@
 #define AUDIOSAMPLE4 0 // channel by channel
 
 #define AUDIODATA 1
-#define AUDIOCONTROL 0
-#define TIMECODEDATA 0
+#define AUDIOCONTROL 1
+#define TIMECODEDATA 1
 
 #define FINAL4 0
 
@@ -979,13 +979,9 @@ int main (int argc, char **argv){ //UYVYfile videoSize
 	long int frameSize = yuv.width * yuv.height * 2 * 10 / 8;
 	uint8_t *frame = NULL;
 	
-	#if FRAMES
+	frame = (uint8_t*) malloc (frameSize);
 
-	frame = (uint8_t*) malloc (frameSize);
-	#elif
-	frame = (uint8_t*) malloc (frameSize);
-	#endif
-	frameNumber =60;
+	frameNumber =1;
 	int ret = 0;
 	
 	remove("sampleFinal5.wav");
