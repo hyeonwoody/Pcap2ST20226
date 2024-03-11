@@ -14,7 +14,7 @@
 #define EMPTY 0
 
 
-#define AUDIOSAMPLE1 1 //PCM
+#define AUDIOSAMPLE1 0 //PCM
 
 #define AUDIOSAMPLE2 0 //aud  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #define AUDIOSAMPLE22 0 // THIS
